@@ -231,6 +231,34 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .toast div{display:grid;line-height:1.35;font-size:.92rem;min-width:0}
 .toast small{color:var(--muted)}
 
+
+/* plainer, less templated layout */
+.hero .wrap{padding-block:3rem 4rem}
+.hero h1{font-size:clamp(2rem,4.6vw,3.2rem);max-width:18ch}
+.hero-note{color:var(--muted);font-size:.95rem}
+.chat{box-shadow:none;border-radius:16px;margin:0}
+.msg,.typing{opacity:1;transform:none;animation:none}
+.sec-title{margin-bottom:2rem}
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:2rem 3rem;align-items:start}
+@media (max-width:860px){.split{grid-template-columns:1fr}}
+.prose{display:grid;gap:1rem;max-width:62ch;align-content:start}
+.prose p{color:var(--muted)}
+.prose b{color:var(--ink)}
+.band{background:var(--ice)}
+.steps li{border-top:1px solid var(--line);padding-top:1rem}
+.steps li::before{content:counter(s);font:700 1.5rem var(--display);letter-spacing:0;text-transform:none;color:var(--brand)}
+.rules{list-style:none;margin:0;padding:0;display:grid}
+.rules li{padding:1rem 0;border-bottom:1px solid var(--line);color:var(--muted)}
+.rules li:first-child{border-top:1px solid var(--line)}
+.rules b{color:var(--ink)}
+.faq{max-width:none;margin:0;gap:0}
+.faq details{background:none;border:0;border-bottom:1px solid var(--line);border-radius:0}
+.faq details:first-child{border-top:1px solid var(--line)}
+.faq summary{padding:1rem 0}
+.faq details p{padding:0 0 1.1rem}
+.faq a,.prose a{color:var(--brand)}
+.form,.verify{box-shadow:none}
+.signup.sec{padding-top:4.5rem}
 footer{border-top:1px solid var(--line)}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1rem;padding-block:2rem;color:var(--muted);font-size:.92rem}
 footer nav{display:flex;gap:1.2rem;flex-wrap:wrap}
@@ -274,41 +302,27 @@ try { var t = localStorage.getItem('ib-theme'); if (t === 'light' || t === 'dark
   <section class="hero">
     <div class="wrap">
       <div class="hero-copy">
-        <p class="kicker">Paid conversations, from your phone</p>
-        <h1>Break the ice. <span class="crack">Get paid</span> for good conversation.</h1>
-        <p class="lead">Icebreaker Chat is a paid chat service. Adult members overseas start conversations with you, you earn for your time, and you can withdraw your balance to M-Pesa, MoMo, your bank or PayPal.</p>
+        <h1>Get paid to talk with people abroad, whenever you have a spare hour.</h1>
+        <p class="lead">Icebreaker Chat is a paid chat service. Adult members in other countries come here because they want someone to talk to. You chat from your phone, you're paid for your time, and you withdraw what you earn to M-Pesa, MoMo, your bank or PayPal.</p>
         <div class="actions">
           <a class="btn btn-main" href="#join">Create a free account <span aria-hidden="true">→</span></a>
           <a class="btn btn-line" href="#how">How it works</a>
         </div>
-        <ul class="ticks">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Free to join</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>No experience needed</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Support team</li>
-        </ul>
+        <p class="hero-note">Free to join. You'll confirm your age with an ID and a selfie before your first chat.</p>
       </div>
 
-      <div class="chat" role="img" aria-label="Example of a conversation in the Icebreaker Chat app">
+      <figure class="chat" aria-label="An example of a first conversation">
         <div class="chat-head">
           <span class="avatar" aria-hidden="true">MK</span>
-          <span class="who"><b>Member</b><small>Example chat</small></span>
-          <span class="tag">Preview</span>
+          <span class="who"><b>Member</b><small>Example conversation</small></span>
         </div>
         <div class="msgs">
           <p class="msg them">Hi! What's something good that happened this week?</p>
           <p class="msg me">I finally finished a long project at work. How about you?</p>
           <p class="msg them">That's great. I tried cooking ugali for the first time. Any tips?</p>
-          <span class="typing" aria-hidden="true"><i></i><i></i><i></i></span>
         </div>
-        <p class="chat-foot">Illustration only. Your rate per conversation is shown in your dashboard before you start.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="payouts" aria-label="Withdrawal methods">
-    <div class="wrap">
-      <p>Withdraw your balance to</p>
-      <div class="methods"><span>M-Pesa</span><span>MoMo</span><span>Bank transfer</span><span>PayPal</span></div>
+        <figcaption class="chat-foot">Illustration. Your rate is shown in your dashboard before you start.</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -319,42 +333,24 @@ try { var t = localStorage.getItem('ib-theme'); if (t === 'light' || t === 'dark
 
   <section class="sec" id="how">
     <div class="wrap">
-      <div class="sec-head">
-        <p class="kicker">How it works</p>
-        <h2>From sign-up to your first withdrawal</h2>
-      </div>
+      <h2 class="sec-title">How it works</h2>
       <ol class="steps">
-        <li><h3>Create your account</h3><p>Choose a display name and add your email. It takes about a minute.</p></li>
-        <li><h3>Verify your age</h3><p>Confirm you are 18 or older with your ID and a selfie. Chatting opens once you pass.</p></li>
-        <li><h3>Start a conversation</h3><p>See which members are online and open a chat whenever you have time.</p></li>
+        <li><h3>Create your account</h3><p>Pick a display name and add your email. It takes about a minute.</p></li>
+        <li><h3>Verify your age</h3><p>Show your ID and take a selfie. Chatting opens once you pass.</p></li>
+        <li><h3>Start a conversation</h3><p>See who is online and open a chat whenever you have time.</p></li>
         <li><h3>Withdraw your balance</h3><p>Send what you've earned to M-Pesa, MoMo, a bank account or PayPal.</p></li>
       </ol>
     </div>
   </section>
 
-  <section class="sec" style="padding-top:0">
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="kicker">Why members stay</p>
-        <h2>Built around your time and your privacy</h2>
-      </div>
-      <div class="benefits">
-        <div class="benefit">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-          <div><h3>Your hours, your choice</h3><p>No shifts and no minimum targets. Log in for ten minutes or two hours.</p></div>
-        </div>
-        <div class="benefit">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M7 15h3"/></svg>
-          <div><h3>Choose how you are paid</h3><p>Request a payout to M-Pesa, MoMo, a bank account or PayPal.</p></div>
-        </div>
-        <div class="benefit">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
-          <div><h3>Private by default</h3><p>Members see your display name only. Your real name and phone number stay hidden.</p></div>
-        </div>
-        <div class="benefit">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 13a8 8 0 0 1 16 0"/><rect x="3" y="13" width="4" height="6" rx="1.5"/><rect x="17" y="13" width="4" height="6" rx="1.5"/></svg>
-          <div><h3>Support when you need it</h3><p>If something goes wrong, contact the support team and we will look into it.</p></div>
-        </div>
+  <section class="sec" id="about">
+    <div class="wrap split">
+      <h2>What it's like</h2>
+      <div class="prose">
+        <p><b>You pick the hours.</b> There are no shifts and no targets. Chat for ten minutes on the matatu home, or for an hour after dinner.</p>
+        <p><b>You choose how you're paid.</b> Request a payout to M-Pesa, MoMo, a bank account or PayPal.</p>
+        <p><b>Your details stay yours.</b> Other members see your display name. They never see your real name, phone number or email.</p>
+        <p><b>Someone is there if it goes wrong.</b> Contact the support team and they will look into it.</p>
       </div>
     </div>
   </section>
@@ -363,25 +359,23 @@ try { var t = localStorage.getItem('ib-theme'); if (t === 'light' || t === 'dark
   <section class="sec" id="reviews" hidden style="padding-top:0">
     <div class="wrap">
       <div class="sec-head">
-        <p class="kicker">Reviews</p>
         <h2>What members say</h2>
       </div>
       <div class="reviews" id="review-list"></div>
     </div>
   </section>
 
-  <section class="sec rules" id="safety">
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="kicker">Safety</p>
-        <h2>Clear rules that protect everyone</h2>
-        <p class="muted">Good conversation needs trust on both sides. These rules apply to every member.</p>
+  <section class="sec band" id="safety">
+    <div class="wrap split">
+      <div class="prose">
+        <h2>The rules</h2>
+        <p>Four rules, for every member and every chat.</p>
       </div>
-      <ul class="rule-list">
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/></svg><div><b>Adults only, checked</b><span>Every member must be 18 or older, and we confirm it with an ID and selfie check before chatting or withdrawing.</span></div></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><div><b>Be yourself</b><span>You chat as you, under your own display name.</span></div></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg><div><b>No money between members</b><span>Never send or accept payments, gifts or contact details in a chat.</span></div></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 21V4h11l-1.5 4L16 12H5"/></svg><div><b>Report problems</b><span>Tell support about any conversation that makes you uncomfortable, and it will be reviewed.</span></div></li>
+      <ul class="rules">
+        <li><b>Adults only, checked.</b> Everyone is 18 or older, confirmed with an ID and selfie before chatting or withdrawing.</li>
+        <li><b>Be yourself.</b> You chat as you, under your own display name.</li>
+        <li><b>No money between members.</b> Never send or accept payments, gifts or contact details in a chat.</li>
+        <li><b>Report problems.</b> Tell support about any conversation that makes you uncomfortable, and it will be reviewed.</li>
       </ul>
     </div>
   </section>
@@ -389,8 +383,7 @@ try { var t = localStorage.getItem('ib-theme'); if (t === 'light' || t === 'dark
   <!-- Members online: fed by your real online-members list -->
   <section class="sec" id="online" hidden>
     <div class="wrap">
-      <div class="sec-head center">
-        <p class="kicker">Members online</p>
+      <div class="sec-head">
         <h2>People online right now</h2>
         <p class="muted">Create an account to start a conversation.</p>
       </div>
@@ -400,11 +393,8 @@ try { var t = localStorage.getItem('ib-theme'); if (t === 'light' || t === 'dark
   </section>
 
   <section class="sec" id="faq">
-    <div class="wrap">
-      <div class="sec-head center">
-        <p class="kicker">FAQ</p>
-        <h2>Questions people ask before joining</h2>
-      </div>
+    <div class="wrap split">
+      <h2>Questions</h2>
       <div class="faq">
         <details><summary>How much can I earn?</summary><p>It depends on how many conversations you complete. The current rate is shown in your dashboard before you start, so you always know what a chat is worth.</p></details>
         <details><summary>Do I have to pay to join?</summary><p>No. Creating an account is free, and you will never be asked to pay to unlock earnings or withdrawals.</p></details>
@@ -420,17 +410,12 @@ try { var t = localStorage.getItem('ib-theme'); if (t === 'light' || t === 'dark
     </div>
   </section>
 
-  <section class="sec signup" id="join" style="padding-top:0">
+  <section class="sec signup band" id="join">
     <div class="wrap">
-      <div class="signup-copy">
-        <p class="kicker">Get started</p>
-        <h2>Create your Icebreaker Chat account</h2>
-        <p class="muted">Sign up in about a minute, then verify your age to start chatting.</p>
-        <ul class="ticks">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Free to create an account</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Withdraw to M-Pesa, MoMo, bank or PayPal</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Request deletion of your account and data</li>
-        </ul>
+      <div class="signup-copy prose">
+        <h2>Create your account</h2>
+        <p>It takes about a minute. Next you'll verify your age, and then you can start your first conversation.</p>
+        <p>Joining is free, and you can ask us to delete your account and data whenever you like.</p>
       </div>
 
       <form class="form" id="signup" novalidate>
