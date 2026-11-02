@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Age verification | Icebreaker Chat</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Onest:wght@400;500;600&display=swap">
+<style>
+:root{color-scheme:light;--bg:#f2fafb;--surface:#ffffff;--ice:#dff3f6;--ink:#0a2530;--muted:#4b6772;--line:#cfe3e8;--brand:#0b5f73;--spark:#e5502a;--mark:#fff3c4;--markink:#4a3b00;--display:"Sora","Avenir Next","Segoe UI",sans-serif;--body:"Onest","Helvetica Neue",Arial,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#08181f;--surface:#0f2730;--ice:#0d2f3a;--ink:#e6f6f8;--muted:#93b5be;--line:#1d3f4a;--brand:#7fe3ea;--spark:#ff7a57;--mark:#4a3b00;--markink:#ffe9a0;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#08181f;--surface:#0f2730;--ice:#0d2f3a;--ink:#e6f6f8;--muted:#93b5be;--line:#1d3f4a;--brand:#7fe3ea;--spark:#ff7a57;--mark:#4a3b00;--markink:#ffe9a0;color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:1.7}
+.wrap{max-width:760px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:2rem 4rem}
+a{color:var(--brand)}
+.back{display:inline-block;margin-bottom:1.5rem;font-weight:600;text-decoration:none}
+h1{font-family:var(--display);font-size:clamp(2rem,5vw,2.8rem);line-height:1.1;margin:0 0 .5rem;letter-spacing:-.02em;text-wrap:balance}
+h2{font-family:var(--display);font-size:1.3rem;margin:2.2rem 0 .5rem;letter-spacing:-.01em}
+p,li{color:var(--ink)}
+.muted{color:var(--muted)}
+.draft{background:var(--ice);border:1px solid var(--line);border-radius:12px;padding:1rem 1.2rem;margin:1.2rem 0 2rem;font-size:.95rem}
+mark{background:var(--mark);color:var(--markink);padding:.05em .3em;border-radius:4px}
+ul{padding-left:1.2rem}
+a:focus-visible{outline:3px solid var(--spark);outline-offset:2px}
+</style>
+<script>try{var t=localStorage.getItem('ib-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body>
+<main class="wrap">
+<a class="back" href="index.html">← Back to Icebreaker Chat</a>
+<h1>Age verification</h1>
+<p class="muted">Icebreaker Chat is for adults only. Everyone confirms they are 18 or older before they can chat or withdraw.</p>
+
+<section id="state-pending" data-state="pending">
+<h2>What you need</h2>
+<ul>
+<li>One valid photo ID: <mark>[list the documents your provider accepts in each country, e.g. national ID, passport, driving licence]</mark>.</li>
+<li>A phone or computer with a camera, and good light.</li>
+<li>About 2 minutes.</li>
+</ul>
+<h2>What happens</h2>
+<ol>
+<li>You photograph the front (and back, if asked) of your ID.</li>
+<li>You take a short selfie so we can check the ID belongs to you.</li>
+<li>Our verification provider, <mark>[provider name]</mark>, checks the ID and works out your age.</li>
+<li>You get the result by email, usually within <mark>[time]</mark>. Some checks are reviewed by a person and take longer.</li>
+</ol>
+<h2>Your information</h2>
+<p>Your ID and selfie are used only to confirm your age. What we keep, who holds it and for how long is explained in the <a href="privacy.html">privacy policy</a>. Other members never see your ID or selfie, and the check does not change the display name they see.</p>
+</section>
+
+<section id="state-approved" data-state="approved" hidden>
+<h2>You are verified</h2>
+<p>Thank you. Your age is confirmed, so you can now chat and request withdrawals.</p>
+<p><a href="index.html#join">Go to Icebreaker Chat</a></p>
+</section>
+
+<section id="state-review" data-state="review" hidden>
+<h2>We are reviewing your check</h2>
+<p>A member of our team needs to look at your documents. This usually takes <mark>[time]</mark>, and we will email you the result. You can't chat or withdraw until it is done.</p>
+</section>
+
+<section id="state-declined" data-state="declined" hidden>
+<h2>We couldn't verify your age</h2>
+<p>This can happen if a photo was blurry, the ID was expired, or the name or date of birth did not match. Try again with a clear photo and good light. If you are under 18, you can't use Icebreaker Chat.</p>
+<p>Need help? <a href="support.html">Contact support</a>.</p>
+</section>
+
+<h2>Questions</h2>
+<p><a href="support.html">Contact support</a> · <a href="privacy.html">Privacy policy</a> · <a href="terms.html">Terms of service</a></p>
+<script>
+(function(){
+  function show(){
+    var h=(location.hash||'').replace('#','');
+    var states=['pending','approved','review','declined'];
+    if(states.indexOf(h)<0)h='pending';
+    states.forEach(function(s){document.getElementById('state-'+s).hidden=(s!==h)});
+  }
+  window.addEventListener('hashchange',show);show();
+})();
+</script>
+
+</main>
+</body>
+</html>
