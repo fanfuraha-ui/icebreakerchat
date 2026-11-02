@@ -6,6 +6,11 @@
 <title>Icebreaker Chat</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Icebreaker Chat: chat from your phone in your free time and withdraw your earnings to M-Pesa, MoMo, bank or PayPal.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'%3E%3Crect width='36' height='36' rx='10' fill='%230b5f73'/%3E%3Cpath d='M9 11.5A3.5 3.5 0 0 1 12.5 8h11A3.5 3.5 0 0 1 27 11.5v8a3.5 3.5 0 0 1-3.5 3.5H16l-5 4.5V23h-.5' fill='none' stroke='%23fff' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M17 11l-1.6 4 2.6.6-1.5 4.4' fill='none' stroke='%23ef5a35' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Icebreaker Chat">
+<meta property="og:description" content="Chat from your phone in your free time and withdraw your earnings to M-Pesa, MoMo, bank or PayPal.">
+<meta name="twitter:card" content="summary">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Onest:wght@400;500;600&display=swap">
@@ -58,7 +63,15 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .nav{display:flex;gap:1.5rem;align-items:center}
 .nav a.link{text-decoration:none;color:var(--muted);font-size:.95rem}
 .nav a.link:hover{color:var(--ink)}
-@media (max-width:720px){.nav a.link{display:none}}
+.menu-btn{display:none;place-items:center;width:40px;height:40px;border-radius:50%;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;padding:0}
+.menu-btn svg{width:20px;height:20px}
+.mnav{display:none}
+@media (max-width:720px){
+  .nav a.link{display:none}
+  .menu-btn{display:grid}
+  .mnav:not([hidden]){display:grid;gap:.25rem;padding:.5rem max(16px,env(safe-area-inset-right,0px)) 1rem max(16px,env(safe-area-inset-left,0px));border-top:1px solid var(--line)}
+  .mnav a{text-decoration:none;padding:.7rem .2rem;font-weight:600;border-bottom:1px solid var(--line)}
+}
 
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;font:600 1rem var(--body);padding:.85rem 1.35rem;border-radius:var(--r);text-decoration:none;border:1.5px solid transparent;cursor:pointer;transition:transform .15s,background .2s}
 .btn:active{transform:translateY(1px)}
@@ -171,9 +184,9 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 
 /* data-driven sections: hidden until real data exists */
 .sample{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--spark);border:1px solid var(--spark);border-radius:6px;padding:.05rem .4rem;vertical-align:middle}
-.demo-bar{position:sticky;top:calc(env(safe-area-inset-top,0px) + 61px);z-index:8;background:var(--spark);color:var(--brand-ink);font-weight:600;font-size:.92rem}
+.demo-bar{position:sticky;top:calc(env(safe-area-inset-top,0px) + 61px);z-index:8;background:var(--ink);color:var(--bg);font-weight:600;font-size:.92rem}
 .demo-bar .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.5rem;padding-block:.55rem}
-.demo-bar a{color:var(--brand-ink)}
+.demo-bar a{color:var(--bg)}
 .stats{border-bottom:1px solid var(--line)}
 .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr))}
 .stat{display:grid;gap:.15rem;text-align:center;padding:1.8rem 1rem;border-left:1px solid var(--line)}
@@ -235,7 +248,13 @@ try { var t = localStorage.getItem('ib-theme'); if (t === 'light' || t === 'dark
         <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
       </button>
       <a class="btn btn-main btn-sm" href="#join">Join free</a>
+      <button class="menu-btn" id="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mnav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
     </nav>
+  </div>
+  <div class="mnav" id="mnav" hidden>
+    <a href="#how">How it works</a><a href="#safety">Safety</a><a href="#faq">FAQ</a>
   </div>
 </header>
 
@@ -247,7 +266,7 @@ try { var t = localStorage.getItem('ib-theme'); if (t === 'light' || t === 'dark
       <div class="hero-copy">
         <p class="kicker">Paid conversations, from your phone</p>
         <h1>Break the ice. <span class="crack">Get paid</span> for good conversation.</h1>
-        <p class="lead">Icebreaker Chat connects you with adult members overseas who want someone to talk to. Chat when it suits you, then withdraw your balance to M-Pesa, MoMo, your bank or PayPal.</p>
+        <p class="lead">Icebreaker Chat is a paid chat service. Adult members overseas start conversations with you, you earn for your time, and you can withdraw your balance to M-Pesa, MoMo, your bank or PayPal.</p>
         <div class="actions">
           <a class="btn btn-main" href="#join">Create a free account <span aria-hidden="true">→</span></a>
           <a class="btn btn-line" href="#how">How it works</a>
@@ -255,7 +274,7 @@ try { var t = localStorage.getItem('ib-theme'); if (t === 'light' || t === 'dark
         <ul class="ticks">
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Free to join</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>No experience needed</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Help every day</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Support team</li>
         </ul>
       </div>
 
@@ -315,7 +334,7 @@ try { var t = localStorage.getItem('ib-theme'); if (t === 'light' || t === 'dark
         </div>
         <div class="benefit">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M7 15h3"/></svg>
-          <div><h3>Withdrawals without long waits</h3><p>Request a payout to mobile money or your bank from the app.</p></div>
+          <div><h3>Choose how you are paid</h3><p>Request a payout to M-Pesa, MoMo, a bank account or PayPal.</p></div>
         </div>
         <div class="benefit">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
@@ -323,7 +342,7 @@ try { var t = localStorage.getItem('ib-theme'); if (t === 'light' || t === 'dark
         </div>
         <div class="benefit">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 13a8 8 0 0 1 16 0"/><rect x="3" y="13" width="4" height="6" rx="1.5"/><rect x="17" y="13" width="4" height="6" rx="1.5"/></svg>
-          <div><h3>Help when you need it</h3><p>Message the support team any day of the week if something goes wrong.</p></div>
+          <div><h3>Support when you need it</h3><p>If something goes wrong, contact the support team and we will look into it.</p></div>
         </div>
       </div>
     </div>
@@ -351,7 +370,7 @@ try { var t = localStorage.getItem('ib-theme'); if (t === 'light' || t === 'dark
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/></svg><div><b>Adults only</b><span>Every member must be 18 or older.</span></div></li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><div><b>Be yourself</b><span>You chat as you, under your own display name.</span></div></li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg><div><b>No money between members</b><span>Never send or accept payments, gifts or contact details in a chat.</span></div></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 21V4h11l-1.5 4L16 12H5"/></svg><div><b>Report in one tap</b><span>Flag any conversation that makes you uncomfortable, and support reviews it.</span></div></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 21V4h11l-1.5 4L16 12H5"/></svg><div><b>Report problems</b><span>Tell support about any conversation that makes you uncomfortable, and it will be reviewed.</span></div></li>
       </ul>
     </div>
   </section>
@@ -378,12 +397,12 @@ try { var t = localStorage.getItem('ib-theme'); if (t === 'light' || t === 'dark
       <div class="faq">
         <details><summary>How much can I earn?</summary><p>It depends on how many conversations you complete. The current rate is shown in your dashboard before you start, so you always know what a chat is worth.</p></details>
         <details><summary>Do I have to pay to join?</summary><p>No. Creating an account is free, and you will never be asked to pay to unlock earnings or withdrawals.</p></details>
-        <details><summary>Do I need experience or special equipment?</summary><p>No. You need a phone or computer with internet access and good written English.</p></details>
-        <details><summary>How do withdrawals work?</summary><p>Once your balance reaches the minimum shown in the app, request a withdrawal to M-Pesa, MoMo, a bank account or PayPal.</p></details>
+        <details><summary>Do I need experience or special equipment?</summary><p>No. You need a phone or computer with internet access.</p></details>
+        <details><summary>How do withdrawals work?</summary><p>Once your balance reaches the minimum shown in your dashboard, request a withdrawal to M-Pesa, MoMo, a bank account or PayPal. Processing times are listed in the terms.</p></details>
         <details><summary>Who will I be talking to?</summary><p>Adult members who signed up to have conversations. You always chat as yourself, using your display name.</p></details>
-        <details><summary>Is my personal information safe?</summary><p>Your real name, phone number and email are never shown to other members. You can close your account and delete your data at any time.</p></details>
+        <details><summary>Is my personal information safe?</summary><p>Other members see only your display name, not your real name, phone number or email. You can ask support to close your account and delete your data, as explained in the <a href="privacy.html">privacy policy</a>.</p></details>
         <details><summary>Can I do this alongside work or school?</summary><p>Yes. There are no shifts or targets, so you can chat whenever you have free time.</p></details>
-        <details><summary>How do I know Icebreaker Chat is legitimate?</summary><p>Read our terms and privacy policy, check that you are never asked for a joining fee, and contact support with any question before you start.</p></details>
+        <details><summary>How do I know Icebreaker Chat is legitimate?</summary><p>Read the <a href="terms.html">terms</a> and <a href="privacy.html">privacy policy</a>, check that you are never asked for a joining fee, and <a href="support.html">contact support</a> with any question before you start.</p></details>
       </div>
     </div>
   </section>
@@ -397,7 +416,7 @@ try { var t = localStorage.getItem('ib-theme'); if (t === 'light' || t === 'dark
         <ul class="ticks">
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Free to create an account</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Withdraw to M-Pesa, MoMo, bank or PayPal</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Delete your account and data any time</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Request deletion of your account and data</li>
         </ul>
       </div>
 
@@ -414,6 +433,11 @@ try { var t = localStorage.getItem('ib-theme'); if (t === 'light' || t === 'dark
           <span class="err" id="email-err"></span>
         </div>
         <div class="field">
+          <label for="dob">Date of birth</label>
+          <input id="dob" name="dob" type="date" autocomplete="bday" max="2100-01-01">
+          <span class="err" id="dob-err"></span>
+        </div>
+        <div class="field">
           <label for="country">Country</label>
           <select id="country" name="country">
             <option value="">Select your country</option>
@@ -422,7 +446,7 @@ try { var t = localStorage.getItem('ib-theme'); if (t === 'light' || t === 'dark
           </select>
           <span class="err" id="country-err"></span>
         </div>
-        <label class="check" for="age"><input id="age" type="checkbox"><span>I'm 18 or older and I accept the <a href="#">terms</a> and <a href="#">privacy policy</a>.</span></label>
+        <label class="check" for="age"><input id="age" type="checkbox"><span>I'm 18 or older and I accept the <a href="terms.html">terms</a> and <a href="privacy.html">privacy policy</a>.</span></label>
         <span class="err" id="age-err"></span>
         <button class="btn btn-main" type="submit">Create my account <span aria-hidden="true">→</span></button>
         <p class="done" id="done" hidden role="status">Your details look good. This form isn't connected to a sign-up server yet, so no account was created.</p>
@@ -435,7 +459,7 @@ try { var t = localStorage.getItem('ib-theme'); if (t === 'light' || t === 'dark
   <div class="wrap">
     <span>© 2026 Icebreaker Chat · For members aged 18 and over</span>
     <nav aria-label="Legal">
-      <a href="#">Terms</a><a href="#">Privacy</a><a href="#">Contact support</a>
+      <a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="support.html">Contact support</a>
     </nav>
   </div>
 </footer>
@@ -581,20 +605,51 @@ var SAMPLE_DATA = {
   label();
 })();
 
+/* Set this to the URL of your sign-up API (it receives JSON: name, email, dob, country). While it is null, no account is created. */
+var SIGNUP_ENDPOINT = null;
+
 (function () {
-  var form = document.getElementById('signup');
+  var form = document.getElementById('signup'), done = document.getElementById('done');
   function setErr(id, msg) { document.getElementById(id + '-err').textContent = msg; }
+  function age(v) {
+    var d = new Date(v + 'T00:00:00'); if (isNaN(d)) return -1;
+    var n = new Date(), a = n.getFullYear() - d.getFullYear();
+    if (n.getMonth() < d.getMonth() || (n.getMonth() === d.getMonth() && n.getDate() < d.getDate())) a--;
+    return a;
+  }
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var ok = true;
     var name = form.name.value.trim(), email = form.email.value.trim();
-    setErr('name', ''); setErr('email', ''); setErr('country', ''); setErr('age', '');
+    ['name', 'email', 'dob', 'country', 'age'].forEach(function (k) { setErr(k, ''); });
+    done.hidden = true;
     if (name.length < 2) { setErr('name', 'Enter a display name of at least 2 characters.'); ok = false; }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setErr('email', 'Enter an email address like you@example.com.'); ok = false; }
+    var a = age(form.dob.value);
+    if (a < 0) { setErr('dob', 'Enter your date of birth.'); ok = false; }
+    else if (a > 110) { setErr('dob', 'Check your date of birth.'); ok = false; }
+    else if (a < 18) { setErr('dob', 'You must be 18 or older to join.'); ok = false; }
     if (!form.country.value) { setErr('country', 'Choose your country.'); ok = false; }
-    if (!document.getElementById('age').checked) { setErr('age', 'Confirm you are 18 or older to continue.'); ok = false; }
-    document.getElementById('done').hidden = !ok;
+    if (!document.getElementById('age').checked) { setErr('age', 'Confirm you are 18 or older and accept the terms.'); ok = false; }
+    if (!ok) return;
+    if (!SIGNUP_ENDPOINT) {
+      done.textContent = "Your details look good. This form isn't connected to a sign-up server yet, so no account was created.";
+      done.hidden = false; return;
+    }
+    var btn = form.querySelector('button[type=submit]'); btn.disabled = true;
+    fetch(SIGNUP_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: name, email: email, dob: form.dob.value, country: form.country.value }) })
+      .then(function (r) { if (!r.ok) throw new Error(); done.textContent = 'Thanks. Check your email to finish creating your account.'; form.reset(); })
+      .catch(function () { done.textContent = 'Something went wrong and your account was not created. Please try again or contact support.'; })
+      .then(function () { done.hidden = false; btn.disabled = false; });
   });
+})();
+
+(function () {
+  var btn = document.getElementById('menu-btn'), nav = document.getElementById('mnav');
+  function set(open) { nav.hidden = !open; btn.setAttribute('aria-expanded', String(open)); btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu'); }
+  btn.addEventListener('click', function () { set(nav.hidden); });
+  nav.addEventListener('click', function (e) { if (e.target.tagName === 'A') set(false); });
 })();
 </script>
 </body>
